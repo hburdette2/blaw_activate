@@ -1,0 +1,39 @@
+.footer {
+    padding-left: 10px;
+    display: flex;
+    color: rgb(0, 0, 0);
+    background-color: lightgray;
+    box-shadow: 2px 2px 7px 2px grey;
+    height: 10rem;
+    position: bottom;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.footer div {
+    flex-grow: 1;
+    padding-right: 20px;
+}
+.custsvc {
+    position: right;
+
+}
+ul {
+    clear: both;
+    margin: 0 auto;
+    list-style-type: none;
+    text-align: right;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+a {
+    color: black;
+    text-decoration: none;
+
+}
+a:hover {
+   
+    color: white;
+
+}
