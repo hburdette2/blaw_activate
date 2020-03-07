@@ -1,12 +1,14 @@
 import tokenService from "./tokenService";
 const BASE_URL = '/api/users/';
 function login(creds) {
+    console.log(creds);
     // server contacts database
     return fetch(BASE_URL + 'login', {
         method: 'POST',
         headers: new Headers({ 'Content-type': 'application/json' }),
         body: JSON.stringify(creds)
     }).then(response => {
+        console.log(response);
         if (response.ok) {
             return response.json();
         } else {
@@ -21,11 +23,13 @@ function getUser() {
     return tokenService.getUserFromToken();
 }
 function signup(user) {
+    console.log(user);
     return fetch(BASE_URL + 'signup', {
         method: 'POST',
         headers: new Headers({ 'Content-type': 'application/json' }),
         body: JSON.stringify(user)
     }).then(response => {
+        console.log(response);
         if (response.ok) {
             return response.json();
         } else {

@@ -15,10 +15,8 @@ function create(data) {
         })
 }
 function index() {
-    return fetch(BASE_URL, {
-        method: 'GET',
-        headers: { 'Authorization': 'Bearer ' + tokenService.getToken() }
-    }).then(res => res.json());
+    return fetch(BASE_URL)
+        .then(res => res.json());
 }
 
 export default {

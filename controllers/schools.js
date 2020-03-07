@@ -16,7 +16,7 @@ async function create(req, res) {
 
 async function index(req, res) {
     try {
-        const school = await School.index(req.body);
+        const school = await School.find({}).sort('schoolName');
         res.json(school);
     } catch (error) {
         res.status(400).json(error);

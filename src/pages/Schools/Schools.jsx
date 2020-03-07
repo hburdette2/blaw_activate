@@ -2,28 +2,39 @@ import React, { useState } from 'react';
 import styles from './Schools.module.css';
 import SchoolForm from '../../components/SchoolForm/SchoolForm';
 
+//const [formVisible, setVisibility] = useState(false);
 
-const Schools = (props) => {
-    const [formVisible, setVisibility] = useState(false);
-    return (
-        <main className={styles.Schools}>
-            <h1>Academic Institutions</h1>
-            <button onClick={() => setVisibility(!formVisible)}>
-                {formVisible ? 'Hide Form' : 'Show Form'}
-            </button>
-            {formVisible &&
-                <SchoolForm {...props} />
-            }
-            {
-                props.schools.map(({ schoolName, schoolCountry, _id }) => (
-                    <section key={_id}>
-                        <h2>{schoolName}</h2>
-                        <p>Country Located: {schoolCountry}</p>
-                    </section>
-                ))
-            }
-        </main>
-    );
-};
+class Schools extends React.Component {
+    componentDidMount = async () => {
+        this.props.handleGetSchools();
+    }
+
+    render() {
+
+        return (
+            <main className={styles.Schools}>
+                <h1>Academic Institutions</h1>
+
+                {/* <button onClick={() => setVisibility(!formVisible)}>
+                    {formVisible ? 'Hide Form' : 'Show Form'}
+                </button>
+                {formVisible && */}
+                <SchoolForm {...this.props} />
+
+
+                {/* {console.log(this.props)} */}
+
+                {
+                    this.props.school.map((s, idx) => (
+                        <section key={idx}>
+                            <h2>{s.schoolName.toUpperCase()}</h2>
+                            <p>Country Located: {s.schoolCountry}</p>
+                        </section>
+                    ))
+                }
+            </main>
+        );
+    };
+}
 
 export default Schools;
