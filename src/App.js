@@ -1,6 +1,6 @@
 import React from "react";
 import { Switch, Route } from 'react-router-dom';
-
+import caseService from "./services/case-api";
 
 //Reusable Components
 import Navbar from "./components/Navbar/Navbar";
@@ -17,13 +17,12 @@ import userService from "./utils/userService";
 import schoolService from "./utils/schoolService";
 
 class App extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      user: userService.getUser(),
-      school: []
-    }
+  state = {
+    user: userService.getUser(),
+    school: [],
+    cases: []
   }
+
   handleSignupOrLogin = () => {
     this.setState({ user: userService.getUser() })
   }
@@ -34,22 +33,48 @@ class App extends React.Component {
     console.log(schools);
   }
 
-  async componentDidMount() {
-    this.handleGetSchools();
+  handleLogout = () => {
+    userService.logout();
+    this.setState({
+      user: null
+    });
   }
+
+  handleGetCases = async () => {
+    caseService.getCases().then(data => {
+      this.setState({
+        cases: data.results
+      })
+    })
+  }
+
+  handleDelete = (id) => {
+    schoolService.deleteOne(id)
+  }
+
+  componentDidMount() {
+    this.handleGetSchools();
+    this.handleGetCases();
+  }
+
 
   render() {
 
     return (
       <div className="App-outer-container">
-        <Navbar />
+        <Navbar
+          user={this.state.user}
+          handleLogout={this.handleLogout}
+        />
+        {console.log(this.state.cases)}
         <div className="App-inner-container">
           <Switch>
             <Route exact path="/" render={props =>
-              <Home />
-            } />
+              <Home
+                {...props} cases={this.state.cases} handleGetCases={this.handleGetCases} />}
+            />
             <Route exact path="/schools" render={props =>
-              <Schools {...props} school={this.state.school} handleGetSchools={this.handleGetSchools} />
+              <Schools {...props} school={this.state.school} handleGetSchools={this.handleGetSchools} handleDelete={this.handleDelete} />
             } />
             <Route exact path="/login" render={props =>
               <Login {...props} handleSignupOrLogin={this.handleSignupOrLogin} />
@@ -64,4 +89,5 @@ class App extends React.Component {
     );
   }
 }
+
 export default App;

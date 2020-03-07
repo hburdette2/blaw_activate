@@ -19,7 +19,21 @@ function index() {
         .then(res => res.json());
 }
 
+function deleteOne(id) {
+    return fetch(BASE_URL + `${id}`, {
+        method: 'DELETE',
+
+    })
+
+        .then(res => {
+            return res.json();
+
+        })
+}
+
+
 export default {
     create,
-    index
+    index,
+    deleteOne
 }

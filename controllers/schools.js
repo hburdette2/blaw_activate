@@ -2,7 +2,17 @@ const School = require('../models/school');
 
 module.exports = {
     create,
-    index
+    index,
+    deleteOne
+}
+
+async function deleteOne(req, res) {
+    try {
+        const school = await School.findByIdAndDelete(req.params.id)
+        res.json({});
+    } catch (error) {
+        res.status(400).json(error);
+    }
 }
 
 async function create(req, res) {

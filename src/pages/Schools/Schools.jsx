@@ -27,7 +27,12 @@ class Schools extends React.Component {
                 {
                     this.props.school.map((s, idx) => (
                         <section key={idx}>
-                            <h2>{s.schoolName.toUpperCase()}</h2>
+                            <div style={{ display: 'flex' }}>
+                                <h2>{s.schoolName.toUpperCase()}</h2>
+
+                                <button onClick={this.props.handleDelete.bind(this, s._id)} className='btn btn-danger'>Delete</button>
+                            </div>
+
                             <p>Country Located: {s.schoolCountry}</p>
                         </section>
                     ))
