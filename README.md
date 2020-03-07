@@ -1,7 +1,7 @@
 ## Introduction: 
 This project is a reinvention of an old single page app that is for Academic Students (mainly law) to register and sign up for Bloomberg Law. This also helps back office staff add or remove Academic Institutions to the program. 
 
-
+￼
 ## Technologies Used: 
 A list of all technologies, libraries, APIs, etc. used in the project.
 MongoDB
