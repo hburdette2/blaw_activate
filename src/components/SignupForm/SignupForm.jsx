@@ -69,7 +69,7 @@ class SignupForm extends Component {
     render() {
         const countries = this.state.usCitizenIsVisible ? <div>
             Please select country.
-            <select value={this.state.notUsCitizen} onChange={this.handleChange}>
+            <select className="select-css" value={this.state.notUsCitizen} onChange={this.handleChange}>
                 <option value="uk">United Kingdom</option>
                 <option value="germany">Germany</option>
                 <option value="canada">Canada</option>
@@ -87,7 +87,7 @@ class SignupForm extends Component {
                     <fieldset>
                         <legend>Sign Up Form</legend>
                         <label htmlFor="schoolName">School Name</label>
-                        <select value={this.state.schoolName} onChange={this.handleChange}>
+                        <select className="select-css" value={this.state.schoolName} onChange={this.handleChange}>
                             <option value="bu">Boston University School of Law</option>
                             <option value="cnu">Christopher Newport University</option>
                             <option value="gmu">George Mason University</option>
