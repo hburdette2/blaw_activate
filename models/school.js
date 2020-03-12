@@ -11,7 +11,6 @@ const schoolSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'User'
     }]
-
 })
 
 schoolSchema.pre('save', function (next) {
